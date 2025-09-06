@@ -546,6 +546,12 @@
     url = "https://registry.npmjs.org/cookie/-/cookie-0.6.0.tgz";
     hash = "sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==";
   };
+  "daisyui" = {
+    out_path = "daisyui";
+    name = "daisyui@5.1.7";
+    url = "https://registry.npmjs.org/daisyui/-/daisyui-5.1.7.tgz";
+    hash = "sha512-XjP2N22lQjFdpH6C1dqCXI+O3stt6ELe8aRtRC/7iKtbRCGZRhgz2YlzPfTiDFm8QH8nEcI/i1MgwY8Im0Ii5A==";
+  };
   "debug" = {
     out_path = "debug";
     name = "debug@4.4.1";
