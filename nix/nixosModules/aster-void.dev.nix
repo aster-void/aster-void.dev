@@ -39,7 +39,7 @@ in {
 
       serviceConfig = {
         Type = "simple";
-        ExecStart = lib.getExe cfg.package;
+        ExecStart = lib.getExe' cfg.package "aster-void.dev";
         Restart = "always";
         RestartSec = 5;
 
