@@ -75,7 +75,9 @@ in {
         RestrictAddressFamilies = ["AF_UNIX" "AF_INET" "AF_INET6"];
         RestrictNamespaces = true;
         LockPersonality = true;
-        MemoryDenyWriteExecute = true;
+        # Bun's JavaScriptCore JIT requires executable memory; denying it
+        # causes "Ran out of executable memory" at runtime.
+        MemoryDenyWriteExecute = false;
         RestrictRealtime = true;
         RestrictSUIDSGID = true;
         RemoveIPC = true;
