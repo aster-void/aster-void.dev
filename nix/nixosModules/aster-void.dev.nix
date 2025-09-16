@@ -24,6 +24,14 @@ in {
         type = types.package;
         default = self.packages.${pkgs.system}.default;
       };
+      memmax = mkOption {
+        type = types.str;
+        default = "3GB";
+      };
+      cpumax = mkOption {
+        type = types.str;
+        default = "50%";
+      };
     };
   };
   config = lib.mkIf cfg.enable {
@@ -41,15 +49,15 @@ in {
         Type = "simple";
         ExecStart = lib.getExe' cfg.package "aster-void.dev";
         Restart = "always";
-        RestartSec = 5;
+        RestartSec = 1;
 
         # Working directory
         WorkingDirectory = "/var/lib/aster-void.dev";
         StateDirectory = "aster-void.dev";
 
         # Resource limits
-        MemoryMax = "512M";
-        CPUQuota = "50%";
+        MemoryMax = cfg.memmax;
+        CPUQuota = cfg.cpumax;
 
         # Security Handling
         DynamicUser = true;
