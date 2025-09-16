@@ -1,4 +1,8 @@
-{mkBunDerivation}: let
+{
+  mkBunDerivation,
+  lib,
+  bun,
+}: let
   pname = "aster-void.dev";
 in
   mkBunDerivation
@@ -19,7 +23,7 @@ in
       install -Dm755 /dev/stdin "$out/bin/${pname}" <<EOF
       #!/usr/bin/env bash
       cd "$out/build"
-      bun start
+      ${lib.getExe bun} start
       EOF
     '';
   }
