@@ -2,6 +2,7 @@
   mkBunDerivation,
   lib,
   bun,
+  bash,
 }: let
   pname = "aster-void.dev";
 in
@@ -21,7 +22,7 @@ in
       cp build node_modules "$out" -r
 
       install -Dm755 /dev/stdin "$out/bin/${pname}" <<EOF
-      #!/usr/bin/env bash
+      #!${lib.getExe bash}
       cd "$out/build"
       ${lib.getExe bun} start
       EOF
