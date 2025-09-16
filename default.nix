@@ -1,7 +1,4 @@
-{
-  mkBunDerivation,
-  port,
-}: let
+{mkBunDerivation}: let
   pname = "aster-void.dev";
 in
   mkBunDerivation
@@ -22,7 +19,7 @@ in
       install -Dm755 /dev/stdin "$out/bin/${pname}" <<EOF
       #!/usr/bin/env bash
       cd "$out/build"
-      PORT=${toString port} bun start
+      bun start
       EOF
     '';
   }

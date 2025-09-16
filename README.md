@@ -1,38 +1,36 @@
-# sv
+# aster-void.dev
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Usage
 
-## Creating a project
+Access <https://aster-void.dev>
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Development
 
-```sh
-# create a new project in the current directory
-bunx sv create
+### Running Package
 
-# create a new project in my-app
-bunx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `bun install` (or `pbun install` or `yarn`), start a development server:
+1. running locally
 
 ```sh
-bun run dev
-
-# or start the server and open the app in a new browser tab
-bun run dev -- --open
+bun install
+bun dev
 ```
 
-## Building
-
-To create a production version of your app:
+2. running as a flake
 
 ```sh
-bun run build
+nix run github:aster-void/aster-void.dev
 ```
 
-You can preview the production build with `bun run preview`.
+3. install as a systemd service
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```nix
+# nixos configuration
+{
+  imports = [ inputs."aster-void.dev".nixosModules.default ];
+
+  services."aster-void.dev" = {
+    enable = true;
+    port = 3000;
+  };
+}
+```

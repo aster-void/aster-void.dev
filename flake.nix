@@ -9,17 +9,17 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     flake-utils,
     bun2nix,
     ...
-  }:
+  }: (
     flake-utils.lib.eachDefaultSystem (
       system: let
         pkgs = nixpkgs.legacyPackages.${system};
         website = pkgs.callPackage ./default.nix {
           inherit (bun2nix.lib.${system}) mkBunDerivation;
-          port = 3000;
         };
       in {
         packages.default = website;
@@ -32,7 +32,12 @@
         };
         formatter = pkgs.alejandra;
       }
-    );
+    )
+    // {
+      nixosModules.default = import ./nix/nixosModules/aster-void.dev.nix {inherit self;};
+      nixosModules."aster-void.dev" = import ./nix/nixosModules/aster-void.dev.nix {inherit self;};
+    }
+  );
 
   nixConfig = {
     extra-substituters = [
