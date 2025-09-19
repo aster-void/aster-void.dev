@@ -24,6 +24,13 @@ in {
         type = types.package;
         default = self.packages.${pkgs.system}.default;
       };
+      env = mkOption {
+        type = with types; attrsOf str;
+        default = {};
+      };
+      envFile = mkOption {
+        type = with types; nullOr path;
+      };
       memmax = mkOption {
         type = types.str;
         default = "3GB";
@@ -40,10 +47,12 @@ in {
       wantedBy = ["multi-user.target"];
       after = ["network.target"];
 
-      environment = {
-        PORT = toString cfg.port;
-        NODE_ENV = "production";
-      };
+      environment =
+        {
+          PORT = toString cfg.port;
+          NODE_ENV = "production";
+        }
+        // cfg.env;
 
       serviceConfig = {
         Type = "simple";
@@ -51,9 +60,10 @@ in {
         Restart = "always";
         RestartSec = 1;
 
-        # Working directory
+        # Env / State
         WorkingDirectory = "/var/lib/aster-void.dev";
         StateDirectory = "aster-void.dev";
+        EnvironmentFile = cfg.envFile;
 
         # Resource limits
         MemoryMax = cfg.memmax;
