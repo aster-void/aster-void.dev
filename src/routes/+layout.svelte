@@ -1,12 +1,14 @@
 <script lang="ts">
+	import Head from '@/services/app/components/Head.svelte';
 	import '../app.css';
-	import favicon from '$lib/assets/favicon.svg';
+	import type { Snippet } from 'svelte';
 
-	let { children } = $props();
+	interface Props {
+		children: Snippet;
+	}
+	const { children }: Props = $props();
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
+<Head />
 
 {@render children?.()}
