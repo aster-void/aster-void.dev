@@ -30,6 +30,7 @@ in {
       };
       envFile = mkOption {
         type = with types; nullOr path;
+        default = null;
       };
       memmax = mkOption {
         type = types.str;
