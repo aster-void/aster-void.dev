@@ -9,7 +9,6 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
-		"postinstall": "bun2nix -o nix/bun.nix",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
@@ -30,7 +29,7 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
-		"daisyui": "^5.1.7",
-		"svelte-adapter-bun": "^0.5.2"
+		"@sveltejs/adapter-static": "^3.0.10",
+		"daisyui": "^5.1.7"
 	}
 }
