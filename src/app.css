@@ -13,13 +13,23 @@
 }
 
 @keyframes float {
-	0%, 100% { transform: translateY(0px); }
-	50% { transform: translateY(-20px); }
+	0%,
+	100% {
+		transform: translateY(0px);
+	}
+	50% {
+		transform: translateY(-20px);
+	}
 }
 
 @keyframes glow {
-	0%, 100% { filter: drop-shadow(0 0 8px var(--accent-cyan)); }
-	50% { filter: drop-shadow(0 0 20px var(--accent-cyan)); }
+	0%,
+	100% {
+		filter: drop-shadow(0 0 8px var(--accent-cyan));
+	}
+	50% {
+		filter: drop-shadow(0 0 20px var(--accent-cyan));
+	}
 }
 
 @keyframes slideInUp {
@@ -34,8 +44,13 @@
 }
 
 @keyframes gridPulse {
-	0%, 100% { opacity: 0.3; }
-	50% { opacity: 0.6; }
+	0%,
+	100% {
+		opacity: 0.3;
+	}
+	50% {
+		opacity: 0.6;
+	}
 }
 
 body {
