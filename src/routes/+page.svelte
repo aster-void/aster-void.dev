@@ -1,12 +1,10 @@
 <script lang="ts">
-	import {
-		BackgroundGrid,
-		ContentLayout,
-		DescriptionSection,
-		FooterCommand,
-		HeroSection,
-		LinkSection
-	} from '$lib';
+	import BackgroundGrid from './BackgroundGrid.svelte';
+	import ContentLayout from './ContentLayout.svelte';
+	import DescriptionSection from './DescriptionSection.svelte';
+	import FooterCommand from './FooterCommand.svelte';
+	import HeroSection from './HeroSection.svelte';
+	import LinkSection from './LinkSection.svelte';
 </script>
 
 /*! 🌼 daisyUI 5.1.7 */ /*! 🌼 daisyUI 5.1.7 */
