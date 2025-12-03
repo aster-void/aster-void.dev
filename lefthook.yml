@@ -1,0 +1,10 @@
+pre-commit:
+  commands:
+    prettier:
+      glob: '*.{svelte,ts,tsx,js,jsx,json,md,css,scss,html,yaml,yml}'
+      run: bun prettier --write {staged_files}
+      stage_fixed: true
+    alejandra:
+      glob: '*.nix'
+      run: alejandra {staged_files}
+      stage_fixed: true
