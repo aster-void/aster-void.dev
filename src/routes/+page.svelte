@@ -1,20 +1,47 @@
 <script lang="ts">
-	import BackgroundGrid from './BackgroundGrid.svelte';
-	import ContentLayout from './ContentLayout.svelte';
-	import DescriptionSection from './DescriptionSection.svelte';
-	import FooterCommand from './FooterCommand.svelte';
-	import HeroSection from './HeroSection.svelte';
-	import LinkSection from './LinkSection.svelte';
+	import AboutSummary from './AboutSummary.svelte';
+	import BuildCommandFooter from './BuildCommandFooter.svelte';
+	import GridOverlay from './GridOverlay.svelte';
+	import HeroBanner from './HeroBanner.svelte';
+	import PageShell from './PageShell.svelte';
+	import ProfileButtons, { type LinkSpec } from './ProfileButtons.svelte';
+
+	const profileLinks: LinkSpec[] = [
+		{
+			href: 'https://github.com/aster-void',
+			label: 'GitHub',
+			variant: 'cyan',
+			rel: 'noopener noreferrer',
+			target: '_blank',
+			icon: 'github'
+		},
+		{
+			href: 'https://zenn.dev/aster_void',
+			label: 'Zenn',
+			variant: 'purple',
+			rel: 'noopener noreferrer',
+			target: '_blank',
+			icon: 'zenn'
+		}
+	];
+
+	const buildCommands = [
+		'bun run build --mode=production',
+		'nix build .#default --show-trace',
+		'cargo build --release'
+	];
+
+	const buildCommand = buildCommands[Math.floor(Math.random() * buildCommands.length)];
 </script>
 
 /*! 🌼 daisyUI 5.1.7 */ /*! 🌼 daisyUI 5.1.7 */
-<BackgroundGrid />
+<GridOverlay />
 
-<ContentLayout>
+<PageShell>
 	<div class="space-y-8 text-center">
-		<HeroSection />
-		<DescriptionSection />
-		<LinkSection />
-		<FooterCommand />
+		<HeroBanner />
+		<AboutSummary />
+		<ProfileButtons links={profileLinks} />
+		<BuildCommandFooter command={buildCommand} />
 	</div>
-</ContentLayout>
+</PageShell>

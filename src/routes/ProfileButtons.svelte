@@ -1,7 +1,7 @@
 <script lang="ts">
 	type Accent = 'cyan' | 'purple';
 
-	type LinkSpec = {
+	export type LinkSpec = {
 		href: string;
 		label: string;
 		variant: Accent;
@@ -10,24 +10,7 @@
 		icon: 'github' | 'zenn';
 	};
 
-	const links: LinkSpec[] = [
-		{
-			href: 'https://github.com/aster-void',
-			label: 'GitHub',
-			variant: 'cyan',
-			rel: 'noopener noreferrer',
-			target: '_blank',
-			icon: 'github'
-		},
-		{
-			href: 'https://zenn.dev/aster_void',
-			label: 'Zenn',
-			variant: 'purple',
-			rel: 'noopener noreferrer',
-			target: '_blank',
-			icon: 'zenn'
-		}
-	];
+	let { links }: { links: LinkSpec[] } = $props();
 
 	const borderClass = (variant: Accent) =>
 		variant === 'cyan'
@@ -53,6 +36,7 @@
 			class={`group relative w-full overflow-hidden rounded-lg border-2 bg-[var(--bg-dark)] px-8 py-4 transition-all duration-300 hover:scale-105 sm:w-auto ${borderClass(
 				link.variant
 			)}`}
+			aria-label={link.label}
 		>
 			<div
 				class={`absolute inset-0 bg-gradient-to-r ${gradientClass(
