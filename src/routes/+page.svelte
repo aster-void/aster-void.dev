@@ -34,7 +34,6 @@
 	const buildCommand = buildCommands[Math.floor(Math.random() * buildCommands.length)];
 </script>
 
-/*! 🌼 daisyUI 5.1.7 */ /*! 🌼 daisyUI 5.1.7 */
 <GridOverlay />
 
 <PageShell>
