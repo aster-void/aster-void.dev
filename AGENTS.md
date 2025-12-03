@@ -1,3 +1,18 @@
+<commit_format>
+"{kind}: {message}"
+kind is one of "meta" "chore" "feat" "refactor" "fix" or something like that
+message is a short, descriptive message explaining what you did.
+</commit_format>
+
+<project_toolchain>
+This project uses:
+
+- Bun
+- Nix devshell (automatically loaded via direnv)
+- Svelte 5
+- TailwindCSS & DaisyUI
+  </project_toolchain>
+
 <frontend_aesthetics>
 You tend to converge toward generic, "on distribution" outputs. In frontend design,this creates what users call the "AI slop" aesthetic. Avoid this: make creative,distinctive frontends that surprise and delight.
 
