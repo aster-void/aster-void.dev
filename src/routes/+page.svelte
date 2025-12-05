@@ -3,10 +3,17 @@
 	import BuildCommandFooter from './BuildCommandFooter.svelte';
 	import GridOverlay from './GridOverlay.svelte';
 	import HeroBanner from './HeroBanner.svelte';
+	import Navigation from './Navigation.svelte';
 	import PageShell from './PageShell.svelte';
 	import ProfileButtons, { type LinkSpec } from './ProfileButtons.svelte';
 
 	const profileLinks: LinkSpec[] = [
+		{
+			href: '/works',
+			label: 'My Works',
+			variant: 'pink',
+			icon: 'works'
+		},
 		{
 			href: 'https://github.com/aster-void',
 			label: 'GitHub',
@@ -35,6 +42,7 @@
 </script>
 
 <GridOverlay />
+<Navigation />
 
 <PageShell>
 	<div class="space-y-8 text-center">

@@ -30,6 +30,7 @@
 		"vite": "^7.0.4"
 	},
 	"dependencies": {
+		"@iconify/svelte": "^5.1.0",
 		"@sveltejs/adapter-static": "^3.0.10",
 		"daisyui": "^5.1.7"
 	}

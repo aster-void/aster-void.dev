@@ -1,3 +1,7 @@
+<svg_rule>
+You must NOT inline an SVG. create a separate SVG file and import it.
+</svg_rule>
+
 <commit_format>
 "{kind}: {message}"
 kind is one of "meta" "chore" "feat" "refactor" "fix" or something like that
