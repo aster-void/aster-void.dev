@@ -1,13 +1,53 @@
 <script lang="ts">
+	import Icon from '@iconify/svelte';
 	import GridOverlay from '../GridOverlay.svelte';
 	import Navigation from '../Navigation.svelte';
 
 	type WorkType = 'personal' | 'team';
 
+	type Tag =
+		| 'Nix'
+		| 'IME'
+		| 'Japanese'
+		| 'TypeScript'
+		| 'Bun'
+		| 'CLI'
+		| 'MCP'
+		| 'Mobile'
+		| 'Social'
+		| 'Education'
+		| 'Productivity'
+		| 'Web'
+		| 'Visualization'
+		| 'Location'
+		| 'Rust'
+		| 'WASM'
+		| 'Game';
+
+	const tagIcons: Record<Tag, string> = {
+		Nix: 'simple-icons:nixos',
+		IME: 'mdi:keyboard',
+		Japanese: 'circle-flags:jp',
+		TypeScript: 'simple-icons:typescript',
+		Bun: 'simple-icons:bun',
+		CLI: 'mdi:console',
+		MCP: 'mdi:connection',
+		Mobile: 'mdi:cellphone',
+		Social: 'mdi:account-group',
+		Education: 'mdi:school',
+		Productivity: 'mdi:clock-check',
+		Web: 'mdi:web',
+		Visualization: 'mdi:chart-bar',
+		Location: 'mdi:map-marker',
+		Rust: 'simple-icons:rust',
+		WASM: 'simple-icons:webassembly',
+		Game: 'mdi:gamepad-variant'
+	};
+
 	interface Work {
 		title: string;
 		description: string;
-		tags: string[];
+		tags: Tag[];
 		links: {
 			github?: string;
 			website?: string;
@@ -45,7 +85,9 @@
 			title: 'CourseMate',
 			description: '同じ授業を履修している友達を見つけられるアプリ。大学生活をもっと楽しく。',
 			tags: ['Mobile', 'Social', 'Education'],
-			links: {},
+			links: {
+				github: 'https://github.com/ut-code/CourseMate'
+			},
 			screenshot: '/screenshots/placeholder.svg',
 			type: 'team',
 			archived: true
@@ -63,7 +105,9 @@
 			title: 'ut-bridge',
 			description: '大学生向けのコミュニケーションプラットフォーム。',
 			tags: ['Web', 'Social', 'Education'],
-			links: {},
+			links: {
+				github: 'https://github.com/ut-code/ut-bridge'
+			},
 			screenshot: '/screenshots/placeholder.svg',
 			type: 'team',
 			archived: true
@@ -72,7 +116,9 @@
 			title: 'how-match',
 			description: 'マッチングの仕組みを可視化するアプリ。',
 			tags: ['Web', 'Visualization'],
-			links: {},
+			links: {
+				github: 'https://github.com/ut-code/how-match'
+			},
 			screenshot: '/screenshots/placeholder.svg',
 			type: 'team',
 			archived: true
@@ -81,7 +127,9 @@
 			title: 'uplace',
 			description: '場所ベースのソーシャルアプリ。',
 			tags: ['Mobile', 'Social', 'Location'],
-			links: {},
+			links: {
+				github: 'https://github.com/ut-code/uplace'
+			},
 			screenshot: '/screenshots/placeholder.svg',
 			type: 'team',
 			archived: true
@@ -91,7 +139,9 @@
 			title: 'ai-othello',
 			description: 'ブラウザ上でAIと対戦できるオセロゲーム。WebAssemblyで動作。',
 			tags: ['Rust', 'WASM', 'Game'],
-			links: {},
+			links: {
+				github: 'https://github.com/ut-code/ai-othello'
+			},
 			screenshot: '/screenshots/placeholder.svg',
 			type: 'personal',
 			archived: true
@@ -160,6 +210,40 @@
 									>
 										{work.type}
 									</span>
+									<!-- Links -->
+									{#if work.links.github}
+										<a
+											href={work.links.github}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-[var(--text-secondary)] transition-colors hover:text-[var(--accent-cyan)]"
+											title="GitHub"
+										>
+											<Icon icon="mdi:github" class="h-5 w-5" />
+										</a>
+									{/if}
+									{#if work.links.website}
+										<a
+											href={work.links.website}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-[var(--text-secondary)] transition-colors hover:text-[var(--accent-purple)]"
+											title="Website"
+										>
+											<Icon icon="mdi:open-in-new" class="h-5 w-5" />
+										</a>
+									{/if}
+									{#if work.links.article}
+										<a
+											href={work.links.article}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-[var(--text-secondary)] transition-colors hover:text-[var(--accent-pink)]"
+											title="Article"
+										>
+											<Icon icon="mdi:file-document" class="h-5 w-5" />
+										</a>
+									{/if}
 								</div>
 								<p class="leading-relaxed text-[var(--text-secondary)]">
 									{work.description}
@@ -169,51 +253,12 @@
 								<div class="flex flex-wrap gap-2">
 									{#each work.tags as tag}
 										<span
-											class="rounded bg-[var(--text-secondary)]/5 px-2 py-0.5 font-mono text-xs text-[var(--text-secondary)]"
+											class="flex items-center gap-1 rounded bg-[var(--text-secondary)]/5 px-2 py-0.5 font-mono text-xs text-[var(--text-secondary)]"
 										>
+											<Icon icon={tagIcons[tag]} class="h-3.5 w-3.5" />
 											{tag}
 										</span>
 									{/each}
-								</div>
-
-								<!-- Links -->
-								<div class="flex gap-3 pt-2">
-									{#if work.links.github}
-										<a
-											href={work.links.github}
-											target="_blank"
-											rel="noopener noreferrer"
-											class="rounded-lg border border-[var(--accent-cyan)]/30 bg-[var(--accent-cyan)]/10 px-4 py-2 font-mono
-												text-sm text-[var(--accent-cyan)] transition-all duration-300
-												hover:border-[var(--accent-cyan)]/60 hover:bg-[var(--accent-cyan)]/20 hover:shadow-[0_0_15px_rgba(0,217,255,0.3)]"
-										>
-											GitHub
-										</a>
-									{/if}
-									{#if work.links.website}
-										<a
-											href={work.links.website}
-											target="_blank"
-											rel="noopener noreferrer"
-											class="rounded-lg border border-[var(--accent-purple)]/30 bg-[var(--accent-purple)]/10 px-4 py-2 font-mono
-												text-sm text-[var(--accent-purple)] transition-all duration-300
-												hover:border-[var(--accent-purple)]/60 hover:bg-[var(--accent-purple)]/20 hover:shadow-[0_0_15px_rgba(181,128,255,0.3)]"
-										>
-											Website
-										</a>
-									{/if}
-									{#if work.links.article}
-										<a
-											href={work.links.article}
-											target="_blank"
-											rel="noopener noreferrer"
-											class="rounded-lg border border-[var(--accent-pink)]/30 bg-[var(--accent-pink)]/10 px-4 py-2 font-mono
-												text-sm text-[var(--accent-pink)] transition-all duration-300
-												hover:border-[var(--accent-pink)]/60 hover:bg-[var(--accent-pink)]/20 hover:shadow-[0_0_15px_rgba(255,110,199,0.3)]"
-										>
-											Article
-										</a>
-									{/if}
 								</div>
 							</div>
 						</article>
@@ -261,6 +306,28 @@
 									>
 										{work.type}
 									</span>
+									{#if work.links.github}
+										<a
+											href={work.links.github}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-[var(--text-secondary)] transition-colors hover:text-[var(--accent-cyan)]"
+											title="GitHub"
+										>
+											<Icon icon="mdi:github" class="h-4 w-4" />
+										</a>
+									{/if}
+									{#if work.links.website}
+										<a
+											href={work.links.website}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="text-[var(--text-secondary)] transition-colors hover:text-[var(--accent-purple)]"
+											title="Website"
+										>
+											<Icon icon="mdi:open-in-new" class="h-4 w-4" />
+										</a>
+									{/if}
 								</div>
 								<p class="text-sm leading-relaxed text-[var(--text-secondary)]">
 									{work.description}
@@ -269,39 +336,13 @@
 								<div class="flex flex-wrap gap-2">
 									{#each work.tags as tag}
 										<span
-											class="rounded bg-[var(--text-secondary)]/5 px-2 py-0.5 font-mono text-xs text-[var(--text-secondary)]"
+											class="flex items-center gap-1 rounded bg-[var(--text-secondary)]/5 px-1.5 py-0.5 font-mono text-[10px] text-[var(--text-secondary)]"
 										>
+											<Icon icon={tagIcons[tag]} class="h-3 w-3" />
 											{tag}
 										</span>
 									{/each}
 								</div>
-
-								{#if work.links.github || work.links.website}
-									<div class="flex gap-2 pt-1">
-										{#if work.links.github}
-											<a
-												href={work.links.github}
-												target="_blank"
-												rel="noopener noreferrer"
-												class="rounded border border-[var(--accent-cyan)]/30 bg-[var(--accent-cyan)]/10 px-3 py-1.5 font-mono
-													text-xs text-[var(--accent-cyan)] transition-all duration-300 hover:bg-[var(--accent-cyan)]/20"
-											>
-												GitHub
-											</a>
-										{/if}
-										{#if work.links.website}
-											<a
-												href={work.links.website}
-												target="_blank"
-												rel="noopener noreferrer"
-												class="rounded border border-[var(--accent-purple)]/30 bg-[var(--accent-purple)]/10 px-3 py-1.5 font-mono
-													text-xs text-[var(--accent-purple)] transition-all duration-300 hover:bg-[var(--accent-purple)]/20"
-											>
-												Website
-											</a>
-										{/if}
-									</div>
-								{/if}
 							</div>
 						</article>
 					{/each}

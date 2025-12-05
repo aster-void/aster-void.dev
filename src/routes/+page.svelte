@@ -1,6 +1,4 @@
 <script lang="ts">
-	import AboutSummary from './AboutSummary.svelte';
-	import BuildCommandFooter from './BuildCommandFooter.svelte';
 	import GridOverlay from './GridOverlay.svelte';
 	import HeroBanner from './HeroBanner.svelte';
 	import Navigation from './Navigation.svelte';
@@ -32,13 +30,11 @@
 		}
 	];
 
-	const buildCommands = [
-		'bun run build --mode=production',
-		'nix build .#default --show-trace',
-		'cargo build --release'
-	];
+	let showButtons = $state(false);
 
-	const buildCommand = buildCommands[Math.floor(Math.random() * buildCommands.length)];
+	function onHeroComplete() {
+		showButtons = true;
+	}
 </script>
 
 <GridOverlay />
@@ -46,9 +42,7 @@
 
 <PageShell>
 	<div class="space-y-8 text-center">
-		<HeroBanner />
-		<AboutSummary />
-		<ProfileButtons links={profileLinks} />
-		<BuildCommandFooter command={buildCommand} />
+		<HeroBanner onSequenceComplete={onHeroComplete} />
+		<ProfileButtons links={profileLinks} visible={showButtons} />
 	</div>
 </PageShell>

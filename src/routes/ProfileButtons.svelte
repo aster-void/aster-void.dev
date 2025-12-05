@@ -12,7 +12,7 @@
 		icon: 'github' | 'zenn' | 'works';
 	};
 
-	let { links }: { links: LinkSpec[] } = $props();
+	let { links, visible = false }: { links: LinkSpec[]; visible?: boolean } = $props();
 
 	const borderClass = (variant: Accent) => {
 		switch (variant) {
@@ -50,7 +50,8 @@
 
 <section
 	class="flex flex-col items-center justify-center gap-4 pt-8 sm:flex-row"
-	style="animation: slideInUp 0.8s ease-out 0.4s backwards"
+	class:invisible={!visible}
+	style={visible ? 'animation: slideInUp 0.8s ease-out' : ''}
 >
 	{#each links as link}
 		<a
