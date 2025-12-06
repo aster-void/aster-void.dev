@@ -15,7 +15,12 @@ This project uses:
 - Nix devshell (automatically loaded via direnv)
 - Svelte 5
 - TailwindCSS & DaisyUI
-  </project_toolchain>
+
+This project runs these in the background:
+
+- vite dev server `bun dev`
+
+</project_toolchain>
 
 <frontend_aesthetics>
 You tend to converge toward generic, "on distribution" outputs. In frontend design,this creates what users call the "AI slop" aesthetic. Avoid this: make creative,distinctive frontends that surprise and delight.
