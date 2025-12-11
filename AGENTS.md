@@ -2,12 +2,6 @@
 You must NOT inline an SVG. create a separate SVG file and import it.
 </svg_rule>
 
-<commit_format>
-"{kind}: {message}"
-kind is one of "meta" "chore" "feat" "refactor" "fix" or something like that
-message is a short, descriptive message explaining what you did.
-</commit_format>
-
 <project_toolchain>
 This project uses:
 
@@ -21,24 +15,3 @@ This project runs these in the background:
 - vite dev server `bun dev`
 
 </project_toolchain>
-
-<frontend_aesthetics>
-You tend to converge toward generic, "on distribution" outputs. In frontend design,this creates what users call the "AI slop" aesthetic. Avoid this: make creative,distinctive frontends that surprise and delight.
-
-Focus on:
-
-- Typography: Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics.
-- Color & Theme: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes. Draw from IDE themes and cultural aesthetics for inspiration.
-- Motion: Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Use Motion library for React when available. Focus on high-impact moments: one well-orchestrated page load with staggered reveals (animation-delay) creates more delight than scattered micro-interactions.
-- Backgrounds: Create atmosphere and depth rather than defaulting to solid colors. Layer CSS gradients, use geometric patterns, or add contextual effects that match the overall aesthetic.
-- Simplicity: Don't overcomplicate the website. Use animation at key parts of the page, write less text over more, stick with one primary color, one secondary and one accent.
-
-Avoid generic AI-generated aesthetics:
-
-- Overused font families (Inter, Roboto, Arial, system fonts)
-- Clichéd color schemes (particularly purple gradients on white backgrounds)
-- Predictable layouts and component patterns
-- Cookie-cutter design that lacks context-specific character
-
-Interpret creatively and make unexpected choices that feel genuinely designed for the context. Vary between light and dark themes, different fonts, different aesthetics. You still tend to converge on common choices (Space Grotesk, for example) across generations. Avoid this: it is critical that you think outside the box!
-</frontend_aesthetics>
